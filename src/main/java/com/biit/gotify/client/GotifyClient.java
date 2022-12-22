@@ -98,7 +98,7 @@ public class GotifyClient {
             parameters.put("since", since);
         }
 
-        final String response = RestGenericClient.get(serverUrl, "application/" + appId + "/message", MediaType.APPLICATION_JSON, 
+        final String response = RestGenericClient.get(serverUrl, "application/" + appId + "/message", MediaType.APPLICATION_JSON,
                 applicationUser, applicationPassword, parameters);
         try {
             return objectMapper.readValue(response, new TypeReference<PagedMessages>() {
@@ -110,19 +110,12 @@ public class GotifyClient {
     }
 
 
-    public PagedMessages deleteAppMessages(Integer messageId) throws UnprocessableEntityException, EmptyResultException {
+    public void deleteAppMessages(Integer messageId) throws UnprocessableEntityException, EmptyResultException {
         final Map<String, Object> parameters = new HashMap<>();
         parameters.put("token", applicationToken);
 
-        final String response = RestGenericClient.delete(serverUrl, "message" + messageId, MediaType.APPLICATION_JSON, 
+        RestGenericClient.delete(serverUrl, "message/" + messageId, MediaType.APPLICATION_JSON,
                 applicationUser, applicationPassword, parameters);
-        try {
-            return objectMapper.readValue(response, new TypeReference<PagedMessages>() {
-            });
-        } catch (JsonProcessingException e) {
-            GotifyLogger.severe(getClass().getName(), "Error parsing response from Gotify server:\n '{}'", response);
-            throw new RuntimeException("Error parsing response from Gotify server", e);
-        }
     }
 
 
