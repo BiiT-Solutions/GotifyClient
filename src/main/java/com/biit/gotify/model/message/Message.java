@@ -1,7 +1,10 @@
 package com.biit.gotify.model.message;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.biit.gotify.exceptions.InvalidMessageException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Message {
     private Integer id;
@@ -66,12 +69,5 @@ public class Message {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String toJson() {
-        final GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setPrettyPrinting();
-        final Gson gson = gsonBuilder.create();
-        return gson.toJson(this);
     }
 }
