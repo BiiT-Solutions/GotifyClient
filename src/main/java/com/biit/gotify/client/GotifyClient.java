@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.core.MediaType;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,6 +61,16 @@ public class GotifyClient {
             }
         }
         this.applicationId = convertedApplicationId;
+    }
+
+    public Message sendPushNotification(String content, String title) throws UnprocessableEntityException, EmptyResultException {
+        final Message message = new Message();
+        message.setMessage(content);
+        if (applicationId != null) {
+            message.setAppid(applicationId);
+        }
+        message.setTitle(title);
+        return sendPushNotification(message);
     }
 
 

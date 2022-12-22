@@ -12,13 +12,13 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @SpringBootTest
 @Test(groups = {"sendPushNotification"})
 public class PushMessageTests extends AbstractTestNGSpringContextTests {
-    @Value("${gotify.application.id}")
-    private String applicationId;
 
     @Autowired
     private GotifyClient gotifyClient;
@@ -27,11 +27,8 @@ public class PushMessageTests extends AbstractTestNGSpringContextTests {
 
     @Test
     public void sendPushNotification() throws UnprocessableEntityException, EmptyResultException {
-        Message message = new Message();
-        message.setMessage("This is a test message");
-        message.setAppid(Integer.parseInt(applicationId));
-        messageSend = gotifyClient.sendPushNotification(message);
-        Assert.assertNotNull(message);
+        messageSend = gotifyClient.sendPushNotification("This is a test message", "\uD83D\uDEA8 Test Title \uD83D\uDEA8");
+        Assert.assertNotNull(messageSend);
     }
 
     @Test(dependsOnMethods = "sendPushNotification")
