@@ -3,11 +3,11 @@
     <test name="SMS" enabled="true" preserve-order="true">
         <groups>
             <run>
-<!--                <include name="sendPushNotification"/>-->
+                <include name="sendPushNotification"/>
             </run>
         </groups>
         <classes>
-<!--            <class name="com.biit.gotify"/>-->
+            <class name="com.biit.gotify.test.PushMessageTests"/>
         </classes>
     </test>
 </suite>

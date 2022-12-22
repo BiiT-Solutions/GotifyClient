@@ -11,6 +11,7 @@ public class GotifyLogger extends BiitLogger {
 
     private static final Logger logger = LoggerFactory.getLogger(GotifyLogger.class);
 
+
     /**
      * Events that have business meaning (i.e. creating category, deleting form,
      * ...). To follow user actions.
@@ -21,6 +22,10 @@ public class GotifyLogger extends BiitLogger {
      */
     public static void info(String className, String messageTemplate, Object... arguments) {
         info(logger, className, messageTemplate, arguments);
+    }
+
+    public static void info(Class<?> clazz, String messageTemplate, Object... arguments) {
+        info(clazz.getName(), messageTemplate, arguments);
     }
 
     /**
@@ -35,6 +40,10 @@ public class GotifyLogger extends BiitLogger {
         warning(logger, className, messageTemplate, arguments);
     }
 
+    public static void warning(Class<?> clazz, String messageTemplate, Object... arguments) {
+        warning(clazz.getName(), messageTemplate, arguments);
+    }
+
     /**
      * For following the trace of the execution. I.e. Knowing if the application
      * access to a method, opening database connection, etc.
@@ -45,6 +54,10 @@ public class GotifyLogger extends BiitLogger {
      */
     public static void debug(String className, String messageTemplate, Object... arguments) {
         debug(logger, className, messageTemplate, arguments);
+    }
+
+    public static void debug(Class<?> clazz, String messageTemplate, Object... arguments) {
+        debug(clazz.getName(), messageTemplate, arguments);
     }
 
     /**
@@ -58,13 +71,22 @@ public class GotifyLogger extends BiitLogger {
         severe(logger, className, messageTemplate, arguments);
     }
 
+    public static void severe(Class<?> clazz, String messageTemplate, Object... arguments) {
+        severe(clazz.getName(), messageTemplate, arguments);
+    }
+
+    public static void errorMessage(Class<?> clazz, Throwable throwable, String messageTemplate, Object... arguments) {
+        errorMessage(clazz.getName(), messageTemplate, arguments);
+        errorMessage(clazz, throwable);
+    }
+
     public static void errorMessage(Class<?> clazz, Throwable throwable) {
         errorMessageNotification(logger, clazz.getName(), throwable);
     }
 
     /**
      * To log java exceptions and log also the stack trace. If enabled, also can
-     * send an email to the administrator to alert of the error.
+     * email the administrator to alert of the error.
      *
      * @param className       the name of the class to log.
      * @param messageTemplate string with static text as template.
