@@ -36,8 +36,8 @@ public class GotifyClient {
     public GotifyClient(@Value("${gotify.server.url}") String serverUrl,
                         @Value("${gotify.application.token}") String applicationToken,
                         @Value("${gotify.application.id}") String applicationId,
-                        @Value("${gotify.application.user}") String applicationUser,
-                        @Value("${gotify.application.password}") String applicationPassword
+                        @Value("${gotify.user}") String applicationUser,
+                        @Value("${gotify.password}") String applicationPassword
     ) {
         this.objectMapper = new ObjectMapper();
         this.serverUrl = serverUrl;
