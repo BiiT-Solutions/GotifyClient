@@ -13,8 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.core.MediaType;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -78,11 +77,11 @@ public class GotifyClient {
         final Map<String, Object> parameters = new HashMap<>();
         parameters.put("token", applicationToken);
         try {
-            final String response = RestGenericClient.post(serverUrl, SEND_MESSAGE_ENDPOINT, objectMapper.writeValueAsString(message),
+            final Response response = RestGenericClient.post(serverUrl, SEND_MESSAGE_ENDPOINT, objectMapper.writeValueAsString(message),
                     MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON, false,
                     parameters);
             try {
-                return objectMapper.readValue(response, new TypeReference<Message>() {
+                return objectMapper.readValue(response.readEntity(String.class), new TypeReference<Message>() {
                 });
             } catch (JsonProcessingException e) {
                 GotifyLogger.severe(getClass().getName(), "Error parsing response from Gotify server:\n '{}'", response);
@@ -110,10 +109,10 @@ public class GotifyClient {
             parameters.put("since", since);
         }
 
-        final String response = RestGenericClient.get(serverUrl, "application/" + appId + "/message", MediaType.APPLICATION_JSON,
+        final Response response = RestGenericClient.get(serverUrl, "application/" + appId + "/message", MediaType.APPLICATION_JSON,
                 applicationUser, applicationPassword, parameters);
         try {
-            return objectMapper.readValue(response, new TypeReference<PagedMessages>() {
+            return objectMapper.readValue(response.readEntity(String.class), new TypeReference<PagedMessages>() {
             });
         } catch (JsonProcessingException e) {
             GotifyLogger.severe(getClass().getName(), "Error parsing response from Gotify server:\n '{}'", response);
