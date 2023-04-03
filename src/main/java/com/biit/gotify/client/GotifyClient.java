@@ -72,6 +72,17 @@ public class GotifyClient {
         return sendPushNotification(message);
     }
 
+    public Message sendPushNotification(String content, String title, Integer priority) throws UnprocessableEntityException, EmptyResultException {
+        final Message message = new Message();
+        message.setMessage(content);
+        if (applicationId != null) {
+            message.setAppid(applicationId);
+        }
+        message.setTitle(title);
+        message.setPriority(priority);
+        return sendPushNotification(message);
+    }
+
 
     public Message sendPushNotification(Message message) throws UnprocessableEntityException, EmptyResultException {
         final Map<String, Object> parameters = new HashMap<>();
