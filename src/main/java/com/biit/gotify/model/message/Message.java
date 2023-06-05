@@ -1,11 +1,5 @@
 package com.biit.gotify.model.message;
 
-import com.biit.gotify.exceptions.InvalidMessageException;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class Message {
     private Integer id;
     private Integer appid;
