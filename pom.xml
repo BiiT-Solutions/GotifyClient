@@ -29,8 +29,8 @@
     </distributionManagement>
 
     <scm>
-        <connection>scm:git:git.biit-solutions.com:BiiT/GotifyClient.git</connection>
-        <developerConnection>scm:git:git.biit-solutions.com:BiiT/GotifyClient.git</developerConnection>
+        <connection>scm:git:git.biit-solutions.com:Java/GotifyClient.git</connection>
+        <developerConnection>scm:git:git.biit-solutions.com:Java/GotifyClient.git</developerConnection>
         <tag>GotifyClient</tag>
     </scm>
 
