@@ -40,8 +40,8 @@ jobs:
         with:
           args: >
             -Dsonar.organization=biit-solutions
-            "-Dsonar.projectName=BiiT Common Utils"
-            -Dsonar.projectKey=BiiT-Solutions_BiiTCommonUtils
+            "-Dsonar.projectName=Gotify Client"
+            -Dsonar.projectKey=BiiT-Solutions_GotifyClient
             -Dsonar.java.binaries=.
             -Dsonar.verbose=true
             -Dsonar.test.exclusions=**/test/*
