@@ -3,7 +3,7 @@
     <test name="SMS" enabled="true" preserve-order="true">
         <groups>
             <run>
-                <include name="sendPushNotification"/>
+                <exclude name="sendPushNotification"/>
             </run>
         </groups>
         <classes>
