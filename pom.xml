@@ -8,7 +8,7 @@
     <description>Library for sending Push notifications to Gotify</description>
 
     <parent>
-        <groupId>com.biit</groupId>
+        <groupId>com.biit-solutions</groupId>
         <artifactId>versions</artifactId>
         <version>[1.0,1.1)</version>
         <relativePath /> <!-- lookup parent from repository -->
@@ -37,11 +37,11 @@
     <dependencies>
         <!-- File access and logger -->
         <dependency>
-            <groupId>com.biit</groupId>
+            <groupId>com.biit-solutions</groupId>
             <artifactId>common-utils</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.biit</groupId>
+            <groupId>com.biit-solutions</groupId>
             <artifactId>rest-generic-client</artifactId>
         </dependency>
 
